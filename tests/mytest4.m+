@@ -1,0 +1,82 @@
+/*
+Take a real and an integer as input, and calculate the tan regression
+of the real up to the integer number of terms
+
+NOTE: the tangent numbers are missing so that it's not truly
+      tan which is calculated, but it still demonstrates the compiler
+*/
+
+var value:real;
+var nterms:int;
+var result:real;
+
+% computes k factorial
+fun factorial(k:int):int
+{
+    var x:int;
+    var y:int;
+    begin
+        x := 1;
+        y := 1;
+        while not x=k do
+        {begin
+            x := x + 1;
+            y := y * x;
+        end};
+        return y;
+    end
+};
+
+% computes base to the power of exp
+fun pow(base:real,exp:int):real
+{
+    var result:real;
+    var i:int;
+    begin
+        result := base;
+        i := exp;
+        while i>1 do
+        {begin
+            result := result * base;
+            i := i - 1;
+        end};
+        return result;
+    end
+};
+
+% computes tan(t) using regression up to m terms
+% NOTE: the tangent numbers are missing so that it's not truly
+%       tan which is calculated, but it still demonstrates the compiler
+fun tan(t:real,m:int):real
+{
+    var acc:real;
+    var counter:int;
+    var power:int;
+    var fact:int;
+    var temp:real;
+    var temp1:real;
+    var temp2:real;
+    begin
+        acc := 0.0;
+        counter := 0;
+        power := 1;
+        while counter<m do
+        {begin
+            temp1 := pow(t,power);
+            fact := factorial(power);
+            temp2 := float(fact);
+            temp := temp1 / temp2;
+            acc := acc + temp;
+            counter := counter + 1;
+            power := power + 2;
+        end};
+        return acc;
+    end
+};
+
+begin
+    read value;
+    read nterms;
+    result := tan(value,nterms);
+    print result;
+end

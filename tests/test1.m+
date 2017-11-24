@@ -1,0 +1,6 @@
+var x:int;
+begin
+  read x;
+  x:= x + 1;
+  print x;
+end

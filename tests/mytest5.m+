@@ -1,0 +1,23 @@
+/*
+Example with syntax that will parse but not compile (bad type)
+*/
+
+var a:int;
+var b:bool;
+var bad_var:real;
+
+fun d(e:int):bool
+{
+    var f:real;
+    begin
+        return float(e)>f;
+    end
+};
+
+begin
+    read a;
+    b := d(a);
+    if b then bad_var := 0.0
+    else bad_var := a;        % bad_var is a float, a is an int
+    print bad_var;
+end

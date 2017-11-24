@@ -1,0 +1,45 @@
+/*
+Take two integer inputs and print true if equal, false if not.
+Demonstrates nested functions.
+*/
+
+var x1:int;
+var x2:int;
+var result:bool;
+
+% returns true if equal
+fun equal(n1:int, n2:int):bool
+{
+    % returns true if greater or equal
+    fun greaterequal(ge1:int, ge2:int):bool
+    {
+        begin
+            return ge1 >= ge2;
+        end
+    };
+    
+    % returns true if lesser or equal
+    fun lesserequal(le1:int, le2:int):bool
+    {
+        begin
+            return le1 =< le2;
+        end
+    };
+    
+    var ge:bool;
+    var le:bool;
+    
+    begin
+        ge := greaterequal(n1,n2);
+        le := lesserequal(n1,n2);
+        return (ge && le);
+    end
+};
+
+% main program function
+begin
+    read x1;
+    read x2;
+    result := equal(x1,x2);
+    print result;
+end

@@ -1,0 +1,57 @@
+/*
+Take a number of integers as input, set to 10 if greater than 10,
+and input that many integers into an array. Then bubble sort the
+array and print the first number in it as well as the array's size.
+
+NOTE: I did not implement arrays, so this only demonstrates parsing
+      and semantic analysis.
+*/
+
+var array[10]:int;
+var count:int;
+var counter:int;
+var first:int;
+
+% Bubble sort n integers and return the first one
+fun bubblesort(n:int):int
+{
+    var i:int;
+    var j:int;
+    var temp:int;
+    begin
+        i := 1;
+        while i<n do
+        {begin
+            j := 0;
+            while j<n-1 do
+            {begin
+                if array[j]>array[j+1] then
+                {begin
+                    temp := array[j];
+                    array[j] := array[j+1];
+                    array[j+1] := temp;
+                end}
+                else temp := 0;
+                j := j + 1;
+            end};
+            i := i + 1;
+        end};
+        return array[0];
+    end};
+
+begin
+    read count;
+    if count>10 then 
+    {begin
+        count := 10;
+        counter := 0;
+    end}
+    else counter := 0;
+    while counter<count do
+    {begin
+        read array[counter];
+        counter := counter + 1;
+    end};
+    first := bubblesort(count);
+    print first;
+end

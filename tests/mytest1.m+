@@ -1,0 +1,36 @@
+/*
+Take two integers and a real as input.
+If the real is between 0 and 1 (inclusive), interpolate a real between
+the two integers corresponding to the input real, otherwise result is 0.
+*/
+
+var x1:int;
+var x2:int;
+var u:real;
+var result:real;
+
+% function to interpolate a value between two reals
+fun interpolate(p1:real, p2:real, u:real):real
+{
+    var p1part:real;
+    var p2part:real;
+    var u2:real;
+    begin
+        u2 := 1.0 - u;
+        p1part := u*p1;
+        p2part := u2*p2;
+        return p1part+p2part;
+    end
+};
+
+% main program function
+begin
+    read x1;
+    read x2;
+    read u;
+    if u>=0.0 && u=<1.0 then
+        result := interpolate(float(x1),float(x2),u)
+    else
+        result := 0.0;
+    print result;
+end
